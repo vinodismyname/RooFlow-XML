@@ -101,6 +101,10 @@ chmod +x setup-roo.sh
 
 ---
 
+## Original Rooflow Documentation
+
+<details>
+
 <!-- ======================= -->
 <!--  ORIGINAL DOCUMENTATION -->
 <!-- ======================= -->
@@ -328,3 +332,5 @@ Contributions to RooFlow are welcome! Please see the [CONTRIBUTING.md](CONTRIBUT
 
 ## License
   [Apache 2.0](LICENSE)
+
+</details>
