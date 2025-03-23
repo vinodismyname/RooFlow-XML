@@ -1,21 +1,22 @@
-# 🚀 RooFlow XML **EXPERIMENT**
+<!-- ======================= -->
+<!-- ROOFLOW XML             -->
+<!-- ======================= -->
 
-🎯 Motivation
-These enhancements address several friction points in the RooFlow setup process and AI performance. The one-line setup script dramatically simplifies installation across different environments, eliminating the complex multi-step process that was causing inconsistent configurations. The updated role definitions solve a critical issue where LLMs would sometimes "forget" about memory bank functionality during complex tasks, resulting in context loss. By updating the prompts and keeping .roomodes definitions intentionally minimal, we ensure the Roo consistently prioritizes memory bank usage without competing instructions. The optional XML conversion provides potential performance benefits with certain LLM backends that parse XML more efficiently than YAML.
+# RooFlow XML -  **EXPERIMENT**
+
+## 🎯 Motivation
+
+- Role Definitons: Updated role definitions solve issues where LLMs would "forget" about memory bank functionality during complex tasks and removed them from the mode level descriptions using .roomodes definitions to ensure Roo consistently prioritizes memory bank usage without competing instructions
+- XML Optimization: XML versions of the system prompt provides potential performance benefits with certain LLM backends that parse XML more efficiently than YAML. This is yet to be fully validated with Roo.
+- Simplified Setup: One-line installation script dramatically reduces friction, replacing the complex multi-step process that caused inconsistent configurations
 
 ## 📋 Prerequisites
 
 **YQ Tool Required**: The setup script depends on `yq` for YAML/XML processing. If you don't have it installed:
 
 ```bash
-# macOS (using Homebrew)
+# macOS/Linux (using Homebrew)
 brew install yq
-
-# Linux (using apt)
-sudo apt-get install yq
-
-# Using pip
-pip install yq
 ```
 
 ## ✨  One-Line Setup
@@ -105,6 +106,10 @@ chmod +x setup-roo.sh
 ```
 
 ---
+
+<!-- ======================= -->
+<!--  ORIGINAL DOCUMENTATION -->
+<!-- ======================= -->
 
 <div align="center">
 
