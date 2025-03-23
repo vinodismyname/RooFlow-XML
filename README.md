@@ -24,13 +24,7 @@ brew install yq
 The RooFlow setup can be done with a one-line setup command:
 
 ```bash
-curl -s "https://raw.githubusercontent.com/vinodismyname/RooFlow-XML/main/config/setup-roo.sh" | bash
-```
-
-For remote repository setup:
-
-```bash
-curl -s "https://raw.githubusercontent.com/vinodismyname/RooFlow-XML/main/config/setup-roo.sh" | bash -s -- "https://github.com/vinodismyname/RooFlow-XML.git"
+curl -s "https://raw.githubusercontent.com/vinodismyname/RooFlow-XML/main/config/setup-roo.sh" | bash -s -- "https://github.com/vinodismyname/RooFlow-XML.git" --xml
 ```
 
 ### 🔄  Shell Aliases
