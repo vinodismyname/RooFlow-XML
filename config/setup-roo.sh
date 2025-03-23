@@ -70,29 +70,22 @@ for arg in "$@"; do
   esac
 done
 
-# ------------- Workspace utilities -------------
-get_workspace_root() {
-  local dir="$PWD"
-  while [[ "$dir" != "/" ]]; do
-    if [[ -f "$dir/packageInfo" ]]; then
-      echo "$dir"
-      return 0
-    fi
-    dir="$(dirname "$dir")"
-  done
-  return 1  # Return error code if no workspace root found
-}
-
-# ------------- Basic directory setup -------------
-WORKSPACE_ROOT=$(get_workspace_root 2>/dev/null || echo "$PWD")
-ROO_DIR="$WORKSPACE_ROOT/.roo"
-
-# ------------- Determine OS and set sed options -------------
+# ------------- Variable setup -------------
+# --- Get Environment Variables Correctly ---
 if [[ "$(uname)" == "Darwin" ]]; then
-  SED_IN_PLACE=(-i "")
+    # macOS specific
+    OS="macOS $(sw_vers -productVersion)"
+    SED_IN_PLACE=(-i "")
 else
-  SED_IN_PLACE=(-i)
+    # Linux specific
+    OS=$(uname -s -r)
+    SED_IN_PLACE=(-i)
 fi
+
+SHELL="bash"  # Hardcode to bash since we're explicitly using it
+HOME=$(echo "$HOME")  # Use existing $HOME, but quote it
+WORKSPACE_ROOT=$(pwd)
+ROO_DIR="$WORKSPACE_ROOT/.roo"
 
 # -------------  Function to escape strings for sed ------------- 
 escape_for_sed() {
@@ -202,7 +195,12 @@ process_system_prompts() {
   # Process prompt files
   find "$ROO_DIR" -type f -name "system-prompt-*" 2>/dev/null | while IFS= read -r file; do
     log_info "Processing system prompt: $file"
-    
+
+    # Basic variables - using sed with escaped strings
+    sed "${SED_IN_PLACE[@]}" "s/OS_PLACEHOLDER/$(escape_for_sed "$OS")/g" "$file"
+    sed "${SED_IN_PLACE[@]}" "s/SHELL_PLACEHOLDER/$(escape_for_sed "$SHELL")/g" "$file"
+    sed "${SED_IN_PLACE[@]}" "s|HOME_PLACEHOLDER|$(escape_for_sed "$HOME")|g" "$file"
+  
     # Replace other placeholders with sed
     sed "${SED_IN_PLACE[@]}" "s|WORKSPACE_PLACEHOLDER|$(escape_for_sed "$WORKSPACE_ROOT")|g" "$file"
     sed "${SED_IN_PLACE[@]}" "s|GLOBAL_SETTINGS_PLACEHOLDER|$(escape_for_sed "$GLOBAL_SETTINGS")|g" "$file"
