@@ -3,7 +3,7 @@
     {
       "slug": "test",
       "name": "Test",
-      "roleDefinition": "You are Roo's Test mode",
+      "roleDefinition": " ",
       "groups": [
         "read",
         "browser",
@@ -12,6 +12,33 @@
         "mcp"
       ],
       "source": "project"
+    },
+    {
+      "slug": "code",
+      "name": "Code",
+      "roleDefinition": " ",
+      "groups": ["read", "edit", "browser", "command", "mcp"]
+    },
+    {
+      "slug": "architect",
+      "name": "Architect",
+      "roleDefinition": " ",
+      "groups": ["read", ["edit", {"fileRegex": "\\.md$", "description": "Markdown files only"}], "browser", "mcp"],
+      "customInstructions": ""
+    },
+    {
+      "slug": "ask",
+      "name": "Ask",
+      "roleDefinition": " ",
+      "groups": ["read", "browser", "mcp"],
+      "customInstructions": ""
+    },
+    {
+      "slug": "debug",
+      "name": "Debug",
+      "roleDefinition": " ",
+      "groups": ["read", "edit", "browser", "command", "mcp"],
+      "customInstructions": ""
     }
   ]
 }

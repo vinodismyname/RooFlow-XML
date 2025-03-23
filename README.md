@@ -1,3 +1,111 @@
+# 🚀 RooFlow XML **EXPERIMENT**
+
+🎯 Motivation
+These enhancements address several friction points in the RooFlow setup process and AI performance. The one-line setup script dramatically simplifies installation across different environments, eliminating the complex multi-step process that was causing inconsistent configurations. The updated role definitions solve a critical issue where LLMs would sometimes "forget" about memory bank functionality during complex tasks, resulting in context loss. By updating the prompts and keeping .roomodes definitions intentionally minimal, we ensure the Roo consistently prioritizes memory bank usage without competing instructions. The optional XML conversion provides potential performance benefits with certain LLM backends that parse XML more efficiently than YAML.
+
+## 📋 Prerequisites
+
+**YQ Tool Required**: The setup script depends on `yq` for YAML/XML processing. If you don't have it installed:
+
+```bash
+# macOS (using Homebrew)
+brew install yq
+
+# Linux (using apt)
+sudo apt-get install yq
+
+# Using pip
+pip install yq
+```
+
+## ✨  One-Line Setup
+
+The RooFlow setup can be done with a one-line setup command:
+
+```bash
+curl -s "https://raw.githubusercontent.com/vinodismyname/RooFlow-XML/main/config/setup-roo.sh" | bash
+```
+
+For remote repository setup:
+
+```bash
+curl -s "https://raw.githubusercontent.com/vinodismyname/RooFlow-XML/main/config/setup-roo.sh" | bash -s -- "https://github.com/vinodismyname/RooFlow-XML.git"
+```
+
+### 🔄  Shell Aliases
+
+Add these aliases to your `~/.bashrc`, `~/.zshrc`, or equivalent shell configuration file:
+
+```bash
+# Basic setup alias
+alias setup-rooflow='curl -s "https://raw.githubusercontent.com/vinodismyname/RooFlow-XML/main/config/setup-roo.sh" | bash -s -- "https://github.com/vinodismyname/RooFlow-XML.git"'
+
+# Remote setup with XML format conversion
+alias setup-rooflow-xml='curl -s "https://raw.githubusercontent.com/vinodismyname/RooFlow-XML/main/config/setup-roo.sh" | bash -s -- "https://github.com/vinodismyname/RooFlow-XML.git" --xml'
+```
+
+After adding these aliases, reload your shell configuration:
+
+```bash
+source ~/.bashrc   # For Bash
+# OR
+source ~/.zshrc    # For Zsh
+```
+
+Then simply run the desired alias:
+
+```bash
+setup-rooflow
+# OR
+setup-rooflow-xml
+```
+
+### 🛠️ Setup Features
+
+- **Local & Remote Modes**: Install from local files or directly from a repository
+- **Override Option**: Force overwrite existing settings with `--override` flag
+- **XML Conversion**: Convert YAML files to XML format with `--xml` flag for potentially improved performance with certain LLMs
+
+## 🧠 Updated Role Definitions
+
+All system prompts now include more detailed role definitions to strengthen the AI assistant's adherence to memory bank functionality:
+
+- **Architect Mode**: "You are Roo, an experienced technical leader who is inquisitive and an excellent planner, focusing on system design, documentation structure, and project organization..."
+- **Code Mode**: "You are Roo, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices..."
+- **Ask Mode**: "You are Roo, a knowledgeable technical assistant focused on answering questions, providing information about software development and technology..."
+- **Debug Mode**: "You are Roo, an expert software debugger who specializes in systematic problem diagnosis and resolution..."
+
+## 📋 Standardized Configuration
+
+- Aligned formatting across all system prompts for better maintainability
+- `.roomodes` set Blank Role Definitions: The .roomodes file use blank space (" ") for role definitions instead of duplicate content. This prevents the LLM from prioritizing these shorter definitions over the more detailed memory-aware instructions in the system prompts, ensuring consistent memory bank functionality across all modes
+
+
+## 🧪 Testing Request
+
+If you're using this fork, please test and share your feedback.
+
+1. Whether the setup script works smoothly in your environment
+2. If you notice improved LLM performance with the enhanced role definitions
+3. Any performance differences when using the XML conversion option
+
+## ⚙️ Manual Setup Options
+
+You can also download and run the script manually:
+
+```bash
+# Download the script
+curl -o setup-roo.sh https://raw.githubusercontent.com/vinodismyname/RooFlow/main/config/setup-roo.sh
+chmod +x setup-roo.sh
+
+# Run with options
+./setup-roo.sh                        # Local mode
+./setup-roo.sh --xml                  # Local mode with XML conversion
+./setup-roo.sh [REPO_URL] --override  # Remote mode, force override
+```
+
+---
+
 <div align="center">
 
 ### ✨MCP server tools✨ 
